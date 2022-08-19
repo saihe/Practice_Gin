@@ -1,6 +1,14 @@
 version: '3'
 
 services:
+  oauth2-proxy:
+    image:  quay.io/oauth2-proxy/oauth2-proxy:v7.3.0
+    hostname: oauth2-proxy
+    volumes:
+      - ./oauth.conf:/etc/oauth2-proxy.cfg
+    ports:
+      - 4180:4180
+    command: --config=/etc/oauth2-proxy.cfg
   frontend:
     image: nginx:1.23-alpine
     ports:
